@@ -1,10 +1,9 @@
-import { jsx as _jsx } from "react/jsx-runtime";
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 export default function ProtectedRoute() {
     const { user, loading } = useAuth();
     if (loading) {
-        return _jsx("div", { className: "center-page", children: "Loading..." });
+        return <div className="grid min-h-screen place-items-center bg-[#f6f7fb] text-sm text-[#7463e7] dark:bg-[#151722]">Loading...</div>;
     }
-    return user ? _jsx(Outlet, {}) : _jsx(Navigate, { to: "/login", replace: true });
+    return user ? <Outlet /> : <Navigate to="/login" replace />;
 }

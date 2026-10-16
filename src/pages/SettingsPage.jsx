@@ -1,10 +1,127 @@
-import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { Bell, LockKeyhole, UserRound } from "lucide-react";
+import { Bell, LockKeyhole, Moon, Sun, UserRound } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
+import { useTheme } from "../hooks/useTheme";
+
+function SettingsHeading({ icon, title, description }) {
+  return (
+    <div className="mb-5 flex items-center gap-3">
+      <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-[#f0edff] text-[#7463e7] dark:bg-[#332f50] dark:text-[#c4bbff]">
+        {icon}
+      </span>
+      <div>
+        <h2 className="mb-1 text-base font-bold">{title}</h2>
+        <p className="m-0 text-xs text-[#9294a6] dark:text-[#a5a9bb]">{description}</p>
+      </div>
+    </div>
+  );
+}
+
+const cardClass =
+  "max-w-3xl rounded-2xl border border-[#ececf3] bg-white p-5 shadow-sm dark:border-[#34384a] dark:bg-[#202331]";
+
 export default function SettingsPage() {
-    const { user } = useAuth();
-    const [notifications, setNotifications] = useState(true);
-    const [saved, setSaved] = useState(false);
-    return (_jsxs("div", { className: "page-stack", children: [_jsx("section", { className: "page-heading", children: _jsxs("div", { children: [_jsx("p", { className: "eyebrow", children: "YOUR PREFERENCES" }), _jsx("h1", { children: "Settings" }), _jsx("p", { className: "muted", children: "Basic account and notification settings." })] }) }), _jsxs("section", { className: "content-card settings-card", children: [_jsxs("div", { className: "settings-heading", children: [_jsx("span", { className: "stat-icon", children: _jsx(UserRound, { size: 19 }) }), _jsxs("div", { children: [_jsx("h2", { children: "Account" }), _jsx("p", { className: "muted", children: "Your current demo account details." })] })] }), _jsxs("div", { className: "settings-detail", children: [_jsx("span", { children: "Name" }), _jsx("strong", { children: user?.name })] }), _jsxs("div", { className: "settings-detail", children: [_jsx("span", { children: "Email" }), _jsx("strong", { children: user?.email })] }), _jsxs("div", { className: "settings-detail", children: [_jsx("span", { children: "Role" }), _jsx("strong", { children: user?.role ?? "Dashboard User" })] }), _jsxs("div", { className: "settings-detail", children: [_jsx("span", { children: "Location" }), _jsx("strong", { children: user?.city ?? "India" })] })] }), _jsxs("section", { className: "content-card settings-card", children: [_jsxs("div", { className: "settings-heading", children: [_jsx("span", { className: "stat-icon", children: _jsx(Bell, { size: 19 }) }), _jsxs("div", { children: [_jsx("h2", { children: "Notifications" }), _jsx("p", { className: "muted", children: "Choose whether to show notification preference." })] })] }), _jsxs("label", { className: "switch-row", children: [_jsx("span", { children: "Enable notifications" }), _jsx("input", { type: "checkbox", checked: notifications, onChange: (event) => setNotifications(event.target.checked) })] })] }), _jsxs("section", { className: "content-card settings-card", children: [_jsxs("div", { className: "settings-heading", children: [_jsx("span", { className: "stat-icon", children: _jsx(LockKeyhole, { size: 19 }) }), _jsxs("div", { children: [_jsx("h2", { children: "Security" }), _jsx("p", { className: "muted", children: "This project uses demo authentication stored in your browser." })] })] }), _jsx("button", { className: "secondary-button", onClick: () => setSaved(true), children: "Acknowledge" }), saved && _jsx("p", { className: "success-message", children: "Preference saved for this screen." })] })] }));
+  const { user } = useAuth();
+  const { theme, setTheme } = useTheme();
+  const [notifications, setNotifications] = useState(true);
+  const [saved, setSaved] = useState(false);
+
+  const optionClasses =
+    "inline-flex min-w-[110px] items-center justify-center gap-2 rounded-xl border px-4 py-2.5 text-xs font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7463e7]";
+
+  return (
+    <div className="flex flex-col gap-6">
+      <section>
+        <p className="mb-2 text-[10px] font-bold tracking-[1.2px] text-[#9698aa]">YOUR PREFERENCES</p>
+        <h1 className="mb-1.5 text-3xl font-bold tracking-tight">Settings</h1>
+        <p className="m-0 text-sm text-[#9294a6] dark:text-[#a5a9bb]">
+          Manage your account and personalize your workspace.
+        </p>
+      </section>
+      <section className={cardClass}>
+        <SettingsHeading
+          icon={theme === "dark" ? <Moon size={19} /> : <Sun size={19} />}
+          title="Appearance"
+          description="Choose the theme used across your dashboard."
+        />
+        <div className="flex gap-2.5" role="group" aria-label="Color theme">
+          {["light", "dark"].map((option) => {
+            const selected = theme === option;
+            const Icon = option === "dark" ? Moon : Sun;
+            return (
+              <button
+                key={option}
+                type="button"
+                className={`${optionClasses} ${
+                  selected
+                    ? "border-[#7463e7] bg-[#f0edff] text-[#6d5bdb] dark:bg-[#332f50] dark:text-[#c4bbff]"
+                    : "border-[#e8e8f0] bg-white text-[#66687d] hover:border-[#cfc8ff] hover:text-[#6d5bdb] dark:border-[#34384a] dark:bg-[#202331] dark:text-[#edf0fa]"
+                }`}
+                aria-pressed={selected}
+                onClick={() => setTheme(option)}
+              >
+                <Icon size={16} />
+                {option === "dark" ? "Dark" : "Light"}
+              </button>
+            );
+          })}
+        </div>
+      </section>
+      <section className={cardClass}>
+        <SettingsHeading
+          icon={<UserRound size={19} />}
+          title="Account"
+          description="Your current demo account details."
+        />
+        {[
+          ["Name", user?.name],
+          ["Email", user?.email],
+          ["Role", user?.role ?? "Dashboard User"],
+          ["Location", user?.city ?? "India"],
+        ].map(([label, value]) => (
+          <div
+            key={label}
+            className="flex justify-between gap-4 border-t border-[#f0f0f5] py-3.5 text-xs dark:border-[#34384a]"
+          >
+            <span className="text-[#9294a6] dark:text-[#a5a9bb]">{label}</span>
+            <strong className="text-right">{value}</strong>
+          </div>
+        ))}
+      </section>
+      <section className={cardClass}>
+        <SettingsHeading
+          icon={<Bell size={19} />}
+          title="Notifications"
+          description="Choose whether to enable notification preferences."
+        />
+        <label className="flex items-center justify-between border-t border-[#f0f0f5] pt-4 text-xs dark:border-[#34384a]">
+          <span>Enable notifications</span>
+          <input
+            className="size-4 accent-[#7463e7]"
+            type="checkbox"
+            checked={notifications}
+            onChange={(event) => setNotifications(event.target.checked)}
+          />
+        </label>
+      </section>
+      <section className={cardClass}>
+        <SettingsHeading
+          icon={<LockKeyhole size={19} />}
+          title="Security"
+          description="This project uses demo authentication stored in your browser."
+        />
+        <button
+          className="rounded-xl border border-[#e8e8f0] bg-white px-4 py-2.5 text-xs font-bold text-[#66687d] transition hover:border-[#cfc8ff] hover:text-[#6d5bdb] dark:border-[#34384a] dark:bg-[#202331] dark:text-[#edf0fa]"
+          onClick={() => setSaved(true)}
+        >
+          Acknowledge
+        </button>
+        {saved && (
+          <p className="mb-0 mt-3 text-xs text-[#248d68]" role="status">
+            Preference saved for this screen.
+          </p>
+        )}
+      </section>
+    </div>
+  );
 }

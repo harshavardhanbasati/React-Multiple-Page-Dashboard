@@ -1,10 +1,10 @@
 [
   {
     "id": 1,
-    "name": "Aarav Sharma",
-    "email": "aarav.sharma@orbitdemo.in",
-    "password": "Orbit@123",
-    "role": "Project Manager",
+    "name": "Harsha Vardhan Basati",
+    "email": "HarshaBasati@gmail.com",
+    "password": "Harsha@123",
+    "role": "Admin",
     "city": "Hyderabad, Telangana",
     "phone": "+91 98765 43210",
     "isDemo": true

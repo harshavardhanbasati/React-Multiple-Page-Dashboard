@@ -13,9 +13,9 @@ Open the local URL shown by Vite.
 
 ## Demo account
 
-- **Email:** `aarav.sharma@orbitdemo.in`
-- **Password:** `Orbit@123`
-- **Profile:** Aarav Sharma, Project Manager, Hyderabad, Telangana
+- **Email:** `HarshaBasati@gmail.com`
+- **Password:** `Harsha@123`
+- **Profile:** Harsha Vardhan Basati, Admin, Hyderabad, Telangana
 
 On the login screen, click **Explore dashboard without credentials** to enter the dashboard directly.
 
@@ -26,10 +26,10 @@ Edit `src/data/users.json`. Each object represents one local demo user:
 ```json
 {
   "id": 1,
-  "name": "Aarav Sharma",
-  "email": "aarav.sharma@orbitdemo.in",
-  "password": "Orbit@123",
-  "role": "Project Manager",
+  "name": "Harsha Vardhan Basati",
+  "email": "HarshaBasati@gmail.com",
+  "password": "Harsha@123",
+  "role": "Admin",
   "city": "Hyderabad, Telangana",
   "phone": "+91 98765 43210",
   "isDemo": true
@@ -61,13 +61,19 @@ Edit `src/data/users.json`. Each object represents one local demo user:
 - `/analytics`
 - `/settings`
 
+## Theme
+
+Choose **Light** or **Dark** in Settings → Appearance. The selected theme is applied across the dashboard and login page and saved in browser `localStorage`, so it remains selected when you return.
+
 ## Data and API
 
 Projects are local sample data. The activity/team widgets use the public JSONPlaceholder API through `src/services/api.js`; that is an external API, not a backend created for this project. You can remove those fetches too if you want the whole dashboard to work offline.
 
 ## Tailwind
 
-This project uses Tailwind CSS v4 with `@tailwindcss/vite`. It does not require `postcss.config.js` or `tailwindcss init -p`.
+This project uses Tailwind CSS v4 with `@tailwindcss/vite`. Page, component, responsive, and dark-theme styles are built with Tailwind utility classes; `src/index.css` only loads Tailwind and defines the base body styles and class-based dark variant. It does not require `postcss.config.js` or `tailwindcss init -p`.
+
+The website icon is the SVG at `public/favicon.svg`, linked from `index.html`.
 
 
 ## JavaScript-only version

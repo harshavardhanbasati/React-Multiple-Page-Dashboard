@@ -5,5 +5,6 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { AuthProvider } from "./context/AuthContext";
 import { DashboardProvider } from "./context/DashboardContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import "./index.css";
-ReactDOM.createRoot(document.getElementById("root")).render(_jsx(React.StrictMode, { children: _jsx(BrowserRouter, { children: _jsx(AuthProvider, { children: _jsx(DashboardProvider, { children: _jsx(App, {}) }) }) }) }));
+ReactDOM.createRoot(document.getElementById("root")).render(_jsx(React.StrictMode, { children: _jsx(ThemeProvider, { children: _jsx(BrowserRouter, { children: _jsx(AuthProvider, { children: _jsx(DashboardProvider, { children: _jsx(App, {}) }) }) }) }) }));
