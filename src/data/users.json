@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Aarav Sharma",
+    "email": "aarav.sharma@orbitdemo.in",
+    "password": "Orbit@123",
+    "role": "Project Manager",
+    "city": "Hyderabad, Telangana",
+    "phone": "+91 98765 43210",
+    "isDemo": true
+  },
+  {
+    "id": 2,
+    "name": "Priya Reddy",
+    "email": "priya.reddy@orbitdemo.in",
+    "password": "Priya@123",
+    "role": "UI Developer",
+    "city": "Vijayawada, Andhra Pradesh",
+    "phone": "+91 98765 12345",
+    "isDemo": false
+  }
+]

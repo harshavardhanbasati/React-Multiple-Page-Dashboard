@@ -1,0 +1,6 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { ArrowUpRight, CalendarDays } from "lucide-react";
+import { Link } from "react-router-dom";
+export default function ProjectCard({ project }) {
+    return (_jsxs("article", { className: "project-card", children: [_jsxs("div", { className: "project-card-heading", children: [_jsx("div", { className: "project-mark", children: project.name.slice(0, 1) }), _jsx("span", { className: `status status-${project.status.toLowerCase().replace(" ", "-")}`, children: project.status })] }), _jsx("h3", { children: project.name }), _jsx("p", { className: "project-description", children: project.description }), _jsxs("div", { className: "progress-heading", children: [_jsx("span", { children: "Progress" }), _jsxs("strong", { children: [project.progress, "%"] })] }), _jsx("div", { className: "progress-track", children: _jsx("div", { className: "progress-value", style: { width: `${project.progress}%` } }) }), _jsxs("div", { className: "project-card-footer", children: [_jsxs("span", { children: [_jsx(CalendarDays, { size: 14 }), " ", project.dueDate] }), _jsxs(Link, { to: `/projects/${project.id}`, "aria-label": `Open ${project.name}`, children: ["Details ", _jsx(ArrowUpRight, { size: 15 })] })] })] }));
+}
