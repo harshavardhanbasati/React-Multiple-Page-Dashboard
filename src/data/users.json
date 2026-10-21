@@ -7,7 +7,7 @@
     "role": "Admin",
     "city": "Hyderabad, Telangana",
     "phone": "+91 98765 43210",
-    "isDemo": true
+    "isDemo": false
   },
   {
     "id": 2,
@@ -18,5 +18,15 @@
     "city": "Vijayawada, Andhra Pradesh",
     "phone": "+91 98765 12345",
     "isDemo": false
+  },
+  {
+    "id": 3,
+    "name": "admin",
+    "email": "admin@gmail.com",
+    "password": "admin@123",
+    "role": "admin",
+    "city": "hyderabad",
+    "phone": "+91 80083 75839",
+    "isDemo": true
   }
 ]
